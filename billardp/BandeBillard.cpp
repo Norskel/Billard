@@ -14,12 +14,25 @@ void BandeBillard::dessine(Graphics ^ g)
 
 void BandeBillard::interagitBille(BilleBillard ^ b)
 {
-	if (_rect.Width < _rect.Height)
+	
+	if (_rect.Width < _rect.Height)// |
 	{
-		b->changeDirection('x');
+		if (_rect.IntersectsWith(b->getRect()))
+		{
+			b->changeDirection('X');
+		}
+
 	}
-	else
+	else // _
 	{
-		b->changeDirection('y');
+		if (_rect.IntersectsWith(b->getRect()))
+		{
+			b->changeDirection('Y');
+		}
 	}
+}
+
+void BandeBillard::reInit(int x, int y, int width, int height)
+{
+	_rect = Rectangle(x, y, width, height);
 }
